@@ -1,28 +1,23 @@
 name: Build
-
 on:
   push:
     branches:
       - main
   pull_request:
     types: [opened, synchronize, reopened]
-
 jobs:
   sonarcloud:
-    name: SonarCloud Analysis
+    name: SonarCloud
     runs-on: ubuntu-latest
-    timeout-minutes: 20  
-
     steps:
       - uses: actions/checkout@v3
         with:
-          fetch-depth: 0  
-
+          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
-      - name: Display Repository Information
-        run: echo "Repository Owner: ${{ github.repository_owner }}, Repository Name: ${{ github.event.repository.name }}"
+
+just add that timeout and 1-2 additional easy steps please
