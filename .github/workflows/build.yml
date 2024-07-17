@@ -24,8 +24,5 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
-      - name: Print Current Date and Time
-        run: echo "Current Date and Time: $(date)"
-
       - name: Display Repository Information
         run: echo "Repository Owner: ${{ github.repository_owner }}, Repository Name: ${{ github.event.repository.name }}"
